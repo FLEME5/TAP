@@ -16,7 +16,7 @@ do{
         
 switch (opcao) { // escolha de opções 
 case 1: // cadastrar motorista
-        System.out.println("Opção a implementar");
+        System.out.println("Opção a implementar em breve");
         
         break;
 
