@@ -6,6 +6,8 @@ public class Principal {
 
         public static void main(String[] args) {
 Scanner entrada=new Scanner(System.in);
+Metodos metodos=new Metodos();
+
 	int opcao=0; // variavel que receberá a opção escolhida pelo usuário
 
 do{
@@ -14,10 +16,11 @@ do{
         
         opcao=entrada.nextInt();
         
-switch (opcao) { // escolha de opções 
+
+        switch (opcao) { // escolha de opções 
 case 1: // cadastrar motorista
-        System.out.println("Opção a implementar em breve");
-        
+metodos.cadastraMotorista();
+	
         break;
 
 default: // caso nenhuma, default
