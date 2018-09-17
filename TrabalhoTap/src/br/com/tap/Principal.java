@@ -1,14 +1,14 @@
-			
 package br.com.tap;
 
+import br.com.tap.entidades.Metodos;
 import java.util.Scanner;
 public class Principal {
 
         public static void main(String[] args) {
+        	Metodos metodos=new Metodos();
+        	
 Scanner entrada=new Scanner(System.in);
-Metodos metodos=new Metodos();
-
-	int opcao=0; // variavel que receberá a opção escolhida pelo usuário
+        int opcao=0; // variavel que receberá a opção escolhida pelo usuário
 
 do{
         System.out.println("Digite sua opção");
@@ -16,15 +16,15 @@ do{
         
         opcao=entrada.nextInt();
         
-
-        switch (opcao) { // escolha de opções 
+switch (opcao) { // escolha de opções 
 case 1: // cadastrar motorista
-metodos.cadastraMotorista();
+    metodos.cadastraMotorista();    
 	
         break;
 
 default: // caso nenhuma, default
-        System.out.println("Opção inválida.");
+    System.out.println("Opção inválida.");   
+	
         break;
 }
         
