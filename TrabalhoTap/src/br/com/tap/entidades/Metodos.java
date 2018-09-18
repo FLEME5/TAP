@@ -137,7 +137,7 @@ public class Metodos {
 		listaVeiculo.add(veiculo);
 		Serializador s = new Serializador();
 		try {
-			s.serializar(nomeArquivo, listaMotorista);
+			s.serializar(nomeArquivo, listaVeiculo);
 		} catch (Exception ex) {
 			System.err.println("Falha ao serializar ou deserializar! - " + ex.toString());
 		}
