@@ -2,7 +2,7 @@ package br.com.tap.teste;
 
 import java.io.Serializable;
 
-public class Encomenda implements Serializable {
+public class Encomenda extends Entidade implements Serializable {
 
 	private static final long serialVersionUID = 123L;
 	private String nomeRemetente;
