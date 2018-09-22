@@ -1,24 +1,19 @@
-package br.com.tap.entidades;
+package br.com.tap;
 
 
-import java.util.List;
+
+
+
+
+
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import java.util.Scanner;
-import java.io.EOFException;
-import java.io.File;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.util.File;
+import br.com.tap.entidades.*;
 
 public class Metodos  {
 
-
-private static List<Motorista> listaMotorista;
 
 public Metodos(){
 
@@ -26,16 +21,11 @@ public Metodos(){
 
         public static void cadastraMotorista ()  {
 
-        	Scanner entrada=new Scanner(System.in);
+        Scanner entrada=new Scanner(System.in);
                  String nomeArquivo = "data/Motoristas.dat";
-               ArrayList<Motorista> listaMotorista=new ArrayList<Motorista>();
-                
-                Motorista motorista=new Motorista();
-                System.out.                
-                
-                println("Cadastro de moto"
-                
-                                + "ristas.");
+               
+                 Motorista motorista=new Motorista();
+                System.out.println("Cadastro de motoristas.");
 
                 System.out.println("Nome:");                
                 String nome=entrada.                                                                                                                                next();
@@ -90,16 +80,43 @@ public Metodos(){
 motorista.setDia_Nascimento(dia_Nascimento);        
         motorista.setMes_Nascimento(mes_Nascimento);
 motorista.setAno_Nascimento(ano_Nascimento);
-listaMotorista.add(motorista);
-Serializador s=new Serializador();
+
+
 try {
-    s.serializar(nomeArquivo, listaMotorista);
+    Serializador s = new Serializador();
+    Deserializador d = new Deserializador();
+
+    List<Object> motoristas = (List<Object>) d.deserializar(nomeArquivo);
+    if (motoristas == null) {
+motoristas = new ArrayList<>();
+    }
+
+motoristas.add(motorista);
+
+    s.serializar(nomeArquivo, motoristas);
+
+    System.out.println("Deseja ver os motoristas cadastrados? - S: sim; N: não.");
+
+    String opcao=entrada.next();
+    if(opcao.equalsIgnoreCase("s")){
+    
+    System.out.println("Motoristas cadastrados:");
+    
+    motoristas=null;
+    motoristas=(List<Object>) d.deserializar(nomeArquivo);
+    for(Object m: motoristas){
+    System.out.println("Nome: "+((Motorista) m).getNome());
+    }
+    }
+    
 } catch (Exception ex) {
-    System.err.println("Falha ao serializar ou deserializar! - " +
-                       ex.toString());
+    System.err.println("Falha ao serializar ou deserializar! - " + ex.toString());
 }
 
+
         }
+
+
 
 		private static boolean existenciaPasta(String pastaRaiz) {
 File pasta=new File(pastaRaiz);
@@ -112,35 +129,5 @@ if(pastaExiste){
 }
                 
         }
-
-		public static List<Motorista> getListaMotorista() {
-			return listaMotorista;
-		}
-
-		public static void setListaMotorista(List<Motorista> listaMotorista) {
-			Metodos.listaMotorista = listaMotorista;
-		}
-
-		public void exibeMotoristas() {
-		String nomeArquivo="data/Motoristas.dat";
-ArrayList <Motorista> motoristas=new ArrayList<Motorista>();
 		
-	       try {
-	   
-	    	   Deserializador d = new Deserializador();
-	    	   
-           motoristas = (ArrayList<Motorista>) d.deserializar(nomeArquivo);
-	           for(Motorista motorista : motoristas){
-	         System.out.println("Nome: "+motorista.getNome()); 
-	           }
-	         
-	       } catch (Exception ex) {
-	           System.err.println("Falha ao serializar ou deserializar! - " +
-	                              ex.toString());
-	       }
-
-		
-		
-		}
-
 }
