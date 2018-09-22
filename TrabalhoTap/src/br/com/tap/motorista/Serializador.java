@@ -1,4 +1,4 @@
-package br.com.tap.entidades;
+package br.com.tap.motorista;
 
 import java.io.FileNotFoundException;
 /**

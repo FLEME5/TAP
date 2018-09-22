@@ -1,4 +1,4 @@
-package br.com.tap;
+package br.com.tap.motorista;
 
 
 
@@ -9,8 +9,6 @@ package br.com.tap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.File;
-import br.com.tap.entidades.*;
 
 public class Metodos  {
 
@@ -86,7 +84,7 @@ try {
     Serializador s = new Serializador();
     Deserializador d = new Deserializador();
 
-    List<Motorista> motoristas = (List<Motorista>) d.deserializarMotorista(nomeArquivo);
+    List<Object> motoristas = (List<Object>) d.deserializar(nomeArquivo);
     if (motoristas == null) {
 motoristas = new ArrayList<>();
     }
@@ -94,6 +92,21 @@ motoristas = new ArrayList<>();
 motoristas.add(motorista);
 
     s.serializar(nomeArquivo, motoristas);
+
+    System.out.println("Deseja ver os motoristas cadastrados? - S: sim; N: não.");
+
+    String opcao=entrada.next();
+    if(opcao.equalsIgnoreCase("s")){
+
+    System.out.println("Motoristas cadastrados:");
+
+    motoristas=null;
+    motoristas=(List<Object>) d.deserializar(nomeArquivo);
+    for(Object m: motoristas){
+    System.out.println("Nome: "+((Motorista) m).getNome());
+    }
+    }
+
 } catch (Exception ex) {
     System.err.println("Falha ao serializar ou deserializar! - " + ex.toString());
 }
@@ -103,16 +116,5 @@ motoristas.add(motorista);
 
 
 
-		private static boolean existenciaPasta(String pastaRaiz) {
-File pasta=new File(pastaRaiz);
 
-        boolean pastaExiste = pasta.exists();
-if(pastaExiste){
-        return true;
-}else{
-        return false;
-}
-                
-        }
-		
 }

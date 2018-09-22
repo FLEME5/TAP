@@ -1,4 +1,4 @@
-package br.com.tap.entidades;
+package br.com.tap.motorista;
 
 
 
@@ -19,7 +19,7 @@ public class Deserializador {
         public Deserializador() {
         }
 
-        public List<Motorista> deserializarMotorista(String path) throws Exception {
+        public List<Object> deserializar(String path) throws Exception {
                 FileInputStream leitorByte = null;
                 ObjectInputStream leitorObjeto = null;
 
@@ -27,7 +27,7 @@ public class Deserializador {
                         leitorByte = new FileInputStream(path);
                         while (leitorByte.available() > 0) {
                                 leitorObjeto = new ObjectInputStream(leitorByte);
-                                List<Motorista> obj = (List<Motorista>) leitorObjeto.readObject();
+                                List<Object> obj = (List<Object>) leitorObjeto.readObject();
                                 return obj;
                         }
                 } catch (FileNotFoundException e) {

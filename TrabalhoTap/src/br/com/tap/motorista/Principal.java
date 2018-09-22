@@ -1,4 +1,4 @@
-package br.com.tap;
+package br.com.tap.motorista;
 import java.util.Scanner;
 
 public class Principal {
