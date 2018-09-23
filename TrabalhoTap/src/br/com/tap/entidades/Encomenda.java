@@ -6,15 +6,15 @@ public class Encomenda implements Serializable {
 
 	private static final long serialVersionUID = 123L;
 	private String nomeRemetente;
-	private String enderecoRemetente;
+	private Endereco enderecoRemetente;
 	private String nomeDestinatario;
-	private String enderecoDestinatario;
+	private Endereco enderecoDestinatario;
 	private String dataDepositoObjeto;
 	private double peso;
 	private int codigoLocalizador;
 
-	public Encomenda(String nomeRemetente, String enderecoRemetente, String nomeDestinatario,
-			String enderecoDestinatario, String dataDepositoObjeto, double peso, int codigoLocalizador) {
+	public Encomenda(String nomeRemetente, Endereco enderecoRemetente, String nomeDestinatario,
+			Endereco enderecoDestinatario, String dataDepositoObjeto, double peso, int codigoLocalizador) {
 		this.nomeRemetente = nomeRemetente;
 		this.enderecoRemetente = enderecoRemetente;
 		this.nomeDestinatario = nomeDestinatario;
@@ -32,11 +32,11 @@ public class Encomenda implements Serializable {
 		this.nomeRemetente = nomeRemetente;
 	}
 
-	public String getEnderecoRemetente() {
+	public Endereco getEnderecoRemetente() {
 		return enderecoRemetente;
 	}
 
-	public void setEnderecoRemetente(String enderecoRemetente) {
+	public void setEnderecoRemetente(Endereco enderecoRemetente) {
 		this.enderecoRemetente = enderecoRemetente;
 	}
 
@@ -48,11 +48,11 @@ public class Encomenda implements Serializable {
 		this.nomeDestinatario = nomeDestinatario;
 	}
 
-	public String getEnderecoDestinatario() {
+	public Endereco getEnderecoDestinatario() {
 		return enderecoDestinatario;
 	}
 
-	public void setEnderecoDestinatario(String enderecoDestinatario) {
+	public void setEnderecoDestinatario(Endereco enderecoDestinatario) {
 		this.enderecoDestinatario = enderecoDestinatario;
 	}
 

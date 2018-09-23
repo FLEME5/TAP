@@ -9,12 +9,21 @@ public class Veiculo implements Serializable {
 	private String modelo;
 	private int ano;
 	private String placa;
+	private Motorista motorista;
 
 	public Veiculo(String marca, String modelo, int ano, String placa) {
 		this.marca = marca;
 		this.modelo = modelo;
 		this.ano = ano;
 		this.placa = placa;
+	}
+	
+	public Motorista getMotorista() {
+		return motorista;
+	}
+
+	public void setMotorista(Motorista motorista) {
+		this.motorista = motorista;
 	}
 	
 	public String getMarca() {
