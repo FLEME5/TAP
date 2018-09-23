@@ -17,14 +17,16 @@ public class Teste {
 			if (encomendas == null) {
 				encomendas = new ArrayList<>();
 			}
-			Encomenda e1 = new Encomenda("Rafaeadfads4", "Rua joão", "Paulo", "Rua Barcelona", "13/09/2018", 12.0, 0);
+			Endereco endereco = new Endereco();
+			Encomenda e1 = new Encomenda("Rafaeadfads4", endereco, "Paulo", endereco, "13/09/2018", 12.0, 0);
 			encomendas.add(e1);
 
 			List<Motorista> motoristas = Deserializador.deserializar("conteudo/motoristas", Motorista.class);
 			if (motoristas == null) {
 				motoristas = new ArrayList<>();
 			}
-			Motorista m1 = new Motorista("Rafaelasdfadsf1", null, 0, 0, 0, (char) 0, 0, "D");
+			
+			Motorista m1 = new Motorista("Rafaelasdfadsf1", endereco, 0, 0, 0, (char) 0, 0, "D");
 			motoristas.add(m1);
 			
 			s.serializar("conteudo/encomendas", encomendas);
@@ -32,7 +34,7 @@ public class Teste {
 			encomendas = Deserializador.deserializar("conteudo/encomendas", Encomenda.class);
 			for (Encomenda encomenda : encomendas) {
 				System.out.println(
-						"Encomenda: " + encomenda.getNomeRemetente() + " - " + encomenda.getEnderecoDestinatario());
+						"Encomenda: " + encomenda.getNomeRemetente() + " - " + encomenda.getNomeDestinatario());
 			}
 
 			s.serializar("conteudo/motoristas", motoristas);
