@@ -21,7 +21,18 @@ public class Encomenda implements Serializable {
 		this.enderecoDestinatario = enderecoDestinatario;
 		this.dataDepositoObjeto = dataDepositoObjeto;
 		this.peso = peso;
-		this. codigoLocalizador = codigoLocalizador;
+		this.codigoLocalizador = codigoLocalizador;
+	}
+	public Encomenda() {
+		
+	}
+
+	@Override
+	public String toString() {
+		return "Encomenda [nomeRemetente=" + nomeRemetente + ", enderecoRemetente=" + enderecoRemetente
+				+ ", nomeDestinatario=" + nomeDestinatario + ", enderecoDestinatario=" + enderecoDestinatario
+				+ ", dataDepositoObjeto=" + dataDepositoObjeto + ", peso=" + peso + ", codigoLocalizador="
+				+ codigoLocalizador + "]";
 	}
 
 	public String getNomeRemetente() {
