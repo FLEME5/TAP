@@ -7,6 +7,7 @@ public class Motorista implements Serializable {
 
 	private String nome;
 	private Endereco endereco;
+	private String dataNascimento;
 	private int dia_Nascimento;
 	private int mes_Nascimento;
 	private int ano_Nascimento;
@@ -27,6 +28,20 @@ public class Motorista implements Serializable {
 		this.matricula = matricula;
 	}
 	
+	public Motorista() {
+		
+	}
+	
+	@Override
+	public String toString() {
+		return "Motorista [nome=" + nome + ", endereco=" + endereco + ", dia_Nascimento=" + dia_Nascimento
+				+ ", mes_Nascimento=" + mes_Nascimento + ", ano_Nascimento=" + ano_Nascimento
+				+ ", categoria_Habilitacao=" + categoria_Habilitacao + ", numero_Carteira=" + numero_Carteira
+				+ ", matricula=" + matricula + ", veiculo=" + veiculo + "]";
+	}
+
+
+
 	public Veiculo getVeiculo() {
 		return veiculo;
 	}

@@ -3,46 +3,64 @@ package br.com.tap.entidades;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Roteiro implements Serializable{
-private static final long serialVersionUID = 512433L;
-    private ArrayList<Encomenda> entregas;
-    private String data;
-    private String nomeMotorista;
-    private Motorista motorista;
-    
-    
-    public ArrayList<Encomenda> getEntregas() {
-        return entregas;
-    }
+public class Roteiro implements Serializable {
 
-    public void setEntregas(ArrayList<Encomenda> objetos) {
-        this.entregas = objetos;
-    }
+	private static final long serialVersionUID = 1L;
+	private Veiculo veiculo;
+	private String data;
+	private Motorista motorista;
+	private ArrayList<Encomenda> encomendas;
 
-    public String getData() {
-        return data;
-    }
+	public Roteiro(Veiculo veiculo, String data, Motorista motorista, ArrayList<Encomenda> encomendas) {
+		this.motorista = motorista;
+		this.encomendas = encomendas;
+		this.data = data;
+		this.veiculo = veiculo;
+	}
+	
+	public Roteiro() {
 
-    public void setData(String data) {
-        this.data = data;
-    }
+	}
 
-    public String getNomeMotorista() {
-        return nomeMotorista;
-    }
+	@Override
+	public String toString() {
+		return "Roteiro [veiculo=" + veiculo + ", data=" + data + ", motorista=" + motorista + "]";
+	}
 
-    public void setNomeMotorista(String nomeMotorista) {
-        this.nomeMotorista = nomeMotorista;
-    }
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	public Motorista getMotorista() {
+		return motorista;
+	}
 
-    public Motorista getMotorista() {
-        return motorista;
-    }
+	public void setMotorista(Motorista motorista) {
+		this.motorista = motorista;
+	}
 
-    public void setMotorista(Motorista motorista) {
-        this.motorista = motorista;
-    }
-    
-    
-    
+	public Veiculo getVeiculo() {
+		return veiculo;
+	}
+
+	public void setVeiculo(Veiculo veiculo) {
+		this.veiculo = veiculo;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
+	public ArrayList<Encomenda> getEncomendas() {
+		return encomendas;
+	}
+
+	public void setEncomendas(ArrayList<Encomenda> encomendas) {
+		this.encomendas = encomendas;
+	}
+
 }
