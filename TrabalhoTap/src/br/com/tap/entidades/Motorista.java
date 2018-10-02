@@ -2,7 +2,12 @@ package br.com.tap.entidades;
 
 import java.io.Serializable;
 
-public class Motorista implements Serializable {
+/**
+ * @author grupo.tap
+ *
+ */
+
+public class Motorista extends Entidade implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String nome;

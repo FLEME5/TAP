@@ -3,7 +3,12 @@ package br.com.tap.entidades;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Roteiro implements Serializable {
+/**
+ * @author grupo.tap
+ *
+ */
+
+public class Roteiro extends Entidade implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Veiculo veiculo;

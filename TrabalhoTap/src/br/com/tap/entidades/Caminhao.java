@@ -1,5 +1,10 @@
 package br.com.tap.entidades;
 
+/**
+ * @author grupo.tap
+ *
+ */
+
 public class Caminhao extends Veiculo{
 	
 	public Caminhao(String marca, String modelo, int ano, String placa) {

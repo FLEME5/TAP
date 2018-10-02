@@ -2,7 +2,12 @@ package br.com.tap.entidades;
 
 import java.io.Serializable;
 
-public class Veiculo implements Serializable {
+/**
+ * @author grupo.tap
+ *
+ */
+
+public class Veiculo extends Entidade implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String marca;
@@ -17,16 +22,17 @@ public class Veiculo implements Serializable {
 		this.ano = ano;
 		this.placa = placa;
 	}
-	
+
 	public Veiculo() {
-		
+
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Veiculo [marca=" + marca + ", modelo=" + modelo + ", ano=" + ano + ", placa=" + placa + ", motorista="
 				+ motorista + "]";
 	}
+
 	public Motorista getMotorista() {
 		return motorista;
 	}
@@ -34,7 +40,7 @@ public class Veiculo implements Serializable {
 	public void setMotorista(Motorista motorista) {
 		this.motorista = motorista;
 	}
-	
+
 	public String getMarca() {
 		return marca;
 	}

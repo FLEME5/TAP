@@ -1,5 +1,10 @@
 package br.com.tap.entidades;
 
+/**
+ * @author grupo.tap
+ *
+ */
+
 public class Carreta extends Veiculo{
 
 	public Carreta(String marca, String modelo, int ano, String placa) {

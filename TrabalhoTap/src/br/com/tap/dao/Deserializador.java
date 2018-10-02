@@ -1,14 +1,19 @@
-package br.com.tap.entidades;
+package br.com.tap.dao;
 
 import java.io.EOFException;
+
 /**
- * @author Rafael
  * Classe responsável por deserializar o objeto
+ * 
+ * @author grupo.tap
+ *
  */
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Deserializador {
@@ -47,7 +52,7 @@ public class Deserializador {
 			} catch (Exception e) {
 			}
 		}
-		return null;
+		return new ArrayList<>();
 	}
 
 }
