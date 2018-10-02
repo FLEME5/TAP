@@ -102,7 +102,11 @@ public class VeiculoBO implements BussinessObject<Veiculo> {
 
 				for (Veiculo x : veiculos) {
 					System.out.println("Marca: " + x.getMarca() + "\nModelo: " + x.getModelo() + "\nPlaca: "
-							+ x.getPlaca() + "\n------------------------");
+							+ x.getPlaca());
+					if(x.getMotorista() != null) {
+						System.out.println("Veiculo esta vinculado ao motorista "+ x.getMotorista().getNome()+" CNH: "+x.getMotorista().getNumero_Carteira());
+					}
+					System.out.println("------------------------");
 				}
 			}
 		} catch (Exception ex) {

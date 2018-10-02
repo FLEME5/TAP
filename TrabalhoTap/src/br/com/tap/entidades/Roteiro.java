@@ -27,10 +27,6 @@ public class Roteiro extends Entidade implements Serializable {
 
 	}
 
-	@Override
-	public String toString() {
-		return "Roteiro [veiculo=" + veiculo + ", data=" + data + ", motorista=" + motorista + "]";
-	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

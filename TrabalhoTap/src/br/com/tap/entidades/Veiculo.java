@@ -27,11 +27,6 @@ public class Veiculo extends Entidade implements Serializable {
 
 	}
 
-	@Override
-	public String toString() {
-		return "Veiculo [marca=" + marca + ", modelo=" + modelo + ", ano=" + ano + ", placa=" + placa + ", motorista="
-				+ motorista + "]";
-	}
 
 	public Motorista getMotorista() {
 		return motorista;

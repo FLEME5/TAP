@@ -99,7 +99,11 @@ public class MotoristaBO implements BussinessObject<Motorista> {
 				System.out.println("Motoristas cadastrados:\n------------------------");
 				for (Motorista x : motoristas) {
 					System.out.println("Nome: " + x.getNome() + "\nCategoria: " + x.getCategoria_Habilitacao()
-							+ "\nNumero CNH: " + x.getNumero_Carteira() + "\n------------------------");
+							+ "\nNumero CNH: " + x.getNumero_Carteira());
+					if(x.getVeiculo() != null) {
+						System.out.println("Motorista esta vinculado ao " + x.getVeiculo().getModelo() + " Placa: "+x.getVeiculo().getPlaca());
+					}
+					System.out.println("------------------------");
 				}
 			}
 

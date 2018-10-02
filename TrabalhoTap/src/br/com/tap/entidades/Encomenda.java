@@ -32,13 +32,7 @@ public class Encomenda extends Entidade implements Serializable {
 		
 	}
 
-	@Override
-	public String toString() {
-		return "Encomenda [nomeRemetente=" + nomeRemetente + ", enderecoRemetente=" + enderecoRemetente
-				+ ", nomeDestinatario=" + nomeDestinatario + ", enderecoDestinatario=" + enderecoDestinatario
-				+ ", dataDepositoObjeto=" + dataDepositoObjeto + ", peso=" + peso + ", codigoLocalizador="
-				+ codigoLocalizador + "]";
-	}
+
 
 	public String getNomeRemetente() {
 		return nomeRemetente;

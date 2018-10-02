@@ -36,14 +36,6 @@ public class Motorista extends Entidade implements Serializable {
 	public Motorista() {
 		
 	}
-	
-	@Override
-	public String toString() {
-		return "Motorista [nome=" + nome + ", endereco=" + endereco + ", dia_Nascimento=" + dia_Nascimento
-				+ ", mes_Nascimento=" + mes_Nascimento + ", ano_Nascimento=" + ano_Nascimento
-				+ ", categoria_Habilitacao=" + categoria_Habilitacao + ", numero_Carteira=" + numero_Carteira
-				+ ", matricula=" + matricula + ", veiculo=" + veiculo + "]";
-	}
 
 
 
