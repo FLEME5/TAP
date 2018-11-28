@@ -6,9 +6,6 @@ import java.util.Scanner;
 
 import br.com.tap.dao.Deserializador;
 import br.com.tap.dao.Serializador;
-import br.com.tap.entidades.Caminhao;
-import br.com.tap.entidades.Carreta;
-import br.com.tap.entidades.Van;
 import br.com.tap.entidades.Veiculo;
 
 /**
@@ -42,13 +39,13 @@ public class VeiculoBO implements BussinessObject<Veiculo> {
 		while (true) {
 			opcaoVeiculo = entrada.nextInt();
 			if (opcaoVeiculo == 1) {
-				veiculo = new Caminhao("", "", 0, "");
+				veiculo.setCarga(3);
 				break;
 			} else if (opcaoVeiculo == 2) {
-				veiculo = new Carreta("", "", 0, "");
+				veiculo.setCarga(10);
 				break;
 			} else if (opcaoVeiculo == 3) {
-				veiculo = new Van("", "", 0, "");
+				veiculo.setCarga(1);
 				break;
 			} else {
 				System.out.println("Opção invalida!");

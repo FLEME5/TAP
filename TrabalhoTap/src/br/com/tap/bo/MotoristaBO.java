@@ -8,7 +8,6 @@ import br.com.tap.dao.Deserializador;
 import br.com.tap.dao.Serializador;
 import br.com.tap.entidades.Endereco;
 import br.com.tap.entidades.Motorista;
-import br.com.tap.entidades.Van;
 import br.com.tap.entidades.Veiculo;
 
 /**
@@ -162,7 +161,7 @@ public class MotoristaBO implements BussinessObject<Motorista> {
 										motorista.setVeiculo(veiculo);
 										System.out.println("Motorista registrado com sucesso.");
 
-									} else if (veiculo instanceof Van
+									} else if (veiculo.getCarga() == 1
 											&& Character.toLowerCase(motorista.getCategoria_Habilitacao()) == 'b') {
 										veiculo.setMotorista(motorista);
 										motorista.setVeiculo(veiculo);
