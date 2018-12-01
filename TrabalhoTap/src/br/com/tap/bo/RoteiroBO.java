@@ -6,8 +6,11 @@ import java.util.Scanner;
 
 import br.com.tap.dao.Deserializador;
 import br.com.tap.dao.Serializador;
+import br.com.tap.entidades.Caminhao;
+import br.com.tap.entidades.Carreta;
 import br.com.tap.entidades.Encomenda;
 import br.com.tap.entidades.Roteiro;
+import br.com.tap.entidades.Van;
 import br.com.tap.entidades.Veiculo;
 
 /**
@@ -32,9 +35,9 @@ public class RoteiroBO implements BussinessObject<Roteiro> {
 		List<Encomenda> encomendas = new ArrayList<>();
 		List<Roteiro> roteiros = new ArrayList<>();
 		List<Encomenda> encomendasPendentes = new ArrayList<>();
-		List<Veiculo> frotaCarreta = new ArrayList<>();
-		List<Veiculo> frotaCaminhao = new ArrayList<>();
-		List<Veiculo> frotaVan = new ArrayList<>();
+		List<Carreta> frotaCarreta = new ArrayList<>();
+		List<Caminhao> frotaCaminhao = new ArrayList<>();
+		List<Van> frotaVan = new ArrayList<>();
 
 		try {
 			veiculos = Deserializador.deserializar("conteudo/veiculos", Veiculo.class);
@@ -51,44 +54,44 @@ public class RoteiroBO implements BussinessObject<Roteiro> {
 		if (roteiros.isEmpty()) {
 			// RN004
 			for (Veiculo v : veiculos) {
-				if (v.getCarga() == 10 && v.getMotorista() != null) {
-					frotaCarreta.add(v);
+				if (v instanceof Carreta && v.getMotorista() != null) {
+					frotaCarreta.add((Carreta) v);
 				}
 			}
 			if (frotaCarreta.isEmpty()) {
 				System.out.println("Nao existem carretas com motoristas vinculados na frota.");
 			} else {
 				System.out.println("Frota de carretas: ");
-				for (Veiculo v : frotaCarreta) {
-					System.out.println(v.getModelo() + " " + v.getPlaca() + " " + v.getMotorista().getNome());
+				for (Carreta v : frotaCarreta) {
+					System.out.println(v);
 				}
 				System.out.println();
 			}
 			for (Veiculo v : veiculos) {
-				if (v.getCarga() == 3 && v.getMotorista() != null) {
-					frotaCaminhao.add(v);
+				if (v instanceof Caminhao && v.getMotorista() != null) {
+					frotaCaminhao.add((Caminhao) v);
 				}
 			}
 			if (frotaCaminhao.isEmpty()) {
 				System.out.println("Nao existem caminhoes com motoristas vinculados na frota.");
 			} else {
 				System.out.println("Frota de caminhoes: ");
-				for (Veiculo v : frotaCaminhao) {
-					System.out.println(v.getModelo() + " " + v.getPlaca() + " " + v.getMotorista().getNome());
+				for (Caminhao v : frotaCaminhao) {
+					System.out.println(v);
 				}
 				System.out.println();
 			}
 			for (Veiculo v : veiculos) {
-				if (v.getCarga() == 1 && v.getMotorista() != null) {
-					frotaVan.add(v);
+				if (v instanceof Van && v.getMotorista() != null) {
+					frotaVan.add((Van) v);
 				}
 			}
 			if (frotaVan.isEmpty()) {
 				System.out.println("Nao existem vans com motoristas vinculados na frota.");
 			} else {
 				System.out.println("Frota de vans: ");
-				for (Veiculo v : frotaVan) {
-					System.out.println(v.getModelo() + " " + v.getPlaca() + " " + v.getMotorista().getNome());
+				for (Van v : frotaVan) {
+					System.out.println(v);
 				}
 				System.out.println();
 			}
@@ -97,38 +100,15 @@ public class RoteiroBO implements BussinessObject<Roteiro> {
 			System.out.println("Insira a data dos roteiros: ");
 			String data = entrada.next();
 			if (!(encomendas.isEmpty())) {
-				for (Veiculo x : frotaCarreta) {
+				for (Carreta x : frotaCarreta) {
 					if (!(encomendas.isEmpty())) {
 						Roteiro novoRoteiro = new Roteiro();
 						novoRoteiro.setData(data);
 						novoRoteiro.setMotorista(x.getMotorista());
 						novoRoteiro.setVeiculo(x);
 						ArrayList<Encomenda> novasEncomendas = new ArrayList<>();
-						for (Veiculo v : frotaCarreta) {
+						while (novasEncomendas.size() < x.getCarga()) {
 							novasEncomendas.add(encomendas.remove(0));
-							if (novasEncomendas.size() == v.getCarga()) {
-								break;
-							}
-						}
-
-						novoRoteiro.setEncomendas(novasEncomendas);
-						roteiros.add(novoRoteiro);
-					}
-				}
-			}
-			if (!(encomendas.isEmpty())) {
-				for (Veiculo x : frotaCaminhao) {
-					if (!(encomendas.isEmpty())) {
-						Roteiro novoRoteiro = new Roteiro();
-						novoRoteiro.setData(data);
-						novoRoteiro.setMotorista(x.getMotorista());
-						novoRoteiro.setVeiculo(x);
-						ArrayList<Encomenda> novasEncomendas = new ArrayList<>();
-						for (Veiculo v : frotaCaminhao) {
-							novasEncomendas.add(encomendas.remove(0));
-							if (novasEncomendas.size() == v.getCarga()) {
-								break;
-							}
 						}
 						novoRoteiro.setEncomendas(novasEncomendas);
 						roteiros.add(novoRoteiro);
@@ -136,18 +116,31 @@ public class RoteiroBO implements BussinessObject<Roteiro> {
 				}
 			}
 			if (!(encomendas.isEmpty())) {
-				for (Veiculo x : frotaVan) {
+				for (Caminhao x : frotaCaminhao) {
 					if (!(encomendas.isEmpty())) {
 						Roteiro novoRoteiro = new Roteiro();
 						novoRoteiro.setData(data);
 						novoRoteiro.setMotorista(x.getMotorista());
 						novoRoteiro.setVeiculo(x);
 						ArrayList<Encomenda> novasEncomendas = new ArrayList<>();
-						for (Veiculo v : frotaCarreta) {
+						while (novasEncomendas.size() < x.getCarga()) {
 							novasEncomendas.add(encomendas.remove(0));
-							if (novasEncomendas.size() == v.getCarga()) {
-								break;
-							}
+						}
+						novoRoteiro.setEncomendas(novasEncomendas);
+						roteiros.add(novoRoteiro);
+					}
+				}
+			}
+			if (!(encomendas.isEmpty())) {
+				for (Van x : frotaVan) {
+					if (!(encomendas.isEmpty())) {
+						Roteiro novoRoteiro = new Roteiro();
+						novoRoteiro.setData(data);
+						novoRoteiro.setMotorista(x.getMotorista());
+						novoRoteiro.setVeiculo(x);
+						ArrayList<Encomenda> novasEncomendas = new ArrayList<>();
+						while (novasEncomendas.size() < x.getCarga()) {
+							novasEncomendas.add(encomendas.remove(0));
 						}
 						novoRoteiro.setEncomendas(novasEncomendas);
 						roteiros.add(novoRoteiro);
@@ -177,17 +170,13 @@ public class RoteiroBO implements BussinessObject<Roteiro> {
 		List<Roteiro> roteiros = new ArrayList<>();
 		try {
 			roteiros = Deserializador.deserializar("conteudo/roteiros", Roteiro.class);
-			System.out.println("Roteiros cadastrados:\n------------------------");
+
 			for (Roteiro x : roteiros) {
-				System.out.println("Veiculo: " + x.getVeiculo().getModelo() + " " + x.getVeiculo().getPlaca()
-						+ " Motorista: " + x.getMotorista().getNome() + " " + x.getMotorista().getNumero_Carteira());
+				System.out.println(x);
 				for (Encomenda y : x.getEncomendas()) {
-					System.out.println("----------------");
-					System.out.println("Nome remetente: " + y.getNomeRemetente() + "\nNome destinatario: "
-							+ y.getNomeDestinatario() + "\nCodigo localizador: " + y.getCodigoLocalizador()
-							+ "\n----------------");
+					System.out.println(y);
 				}
-				System.out.println("------------------------");
+				System.out.println();
 			}
 
 		} catch (Exception ex) {
@@ -280,17 +269,6 @@ public class RoteiroBO implements BussinessObject<Roteiro> {
 					}
 					System.out.println();
 				}
-				for (Roteiro x : roteiros) {
-					System.out.println("Veiculo: " + x.getVeiculo().getModelo() + " " + x.getVeiculo().getPlaca()
-							+ " Motorista: " + x.getMotorista().getNome() + " " + x.getMotorista().getNumero_Carteira());
-					for (Encomenda y : x.getEncomendas()) {
-						System.out.println("----------------");
-						System.out.println("Nome remetente: " + y.getNomeRemetente() + "\nNome destinatario: "
-								+ y.getNomeDestinatario() + "\nCodigo localizador: " + y.getCodigoLocalizador()
-								+ "\n----------------");
-					}
-					System.out.println("------------------------");
-				}
 
 			} else if (opcao == 2) {
 				ArrayList<Roteiro> roteiros = new ArrayList<>();
@@ -309,19 +287,16 @@ public class RoteiroBO implements BussinessObject<Roteiro> {
 					}
 					System.out.println();
 				}
-				for (Roteiro x : roteiros) {
-					System.out.println("Veiculo: " + x.getVeiculo().getModelo() + " " + x.getVeiculo().getPlaca()
-							+ " Motorista: " + x.getMotorista().getNome() + " " + x.getMotorista().getNumero_Carteira());
-					for (Encomenda y : x.getEncomendas()) {
-						System.out.println("----------------");
-						System.out.println("Nome remetente: " + y.getNomeRemetente() + "\nNome destinatario: "
-								+ y.getNomeDestinatario() + "\nCodigo localizador: " + y.getCodigoLocalizador()
-								+ "\n----------------");
-					}
-					System.out.println("------------------------");
-				}
 			} else {
 				System.out.println("Opcao invalida.");
+			}
+
+			for (Roteiro x : roteirosAntigos) {
+				System.out.println(x);
+				for (Encomenda y : x.getEncomendas()) {
+					System.out.println(y);
+				}
+				System.out.println();
 			}
 
 		} catch (Exception ex) {

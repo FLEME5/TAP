@@ -1,3 +1,4 @@
+	
 package br.com.tap.menu;
 
 import java.util.Scanner;
@@ -18,7 +19,13 @@ public class Principal {
 
 		Scanner entrada = new Scanner(System.in);
 		int opcao = 0; // variavel que receberá a opção escolhida pelo usuário
+		
+		// Pergunta se quer gravar em banco ou em arquivo. Valor 0=banco; 1=arquivo;
+System.out.println("Quer gravar os dados no banco de dados ou em arquivo? 0 - banco; 1 - arquivo.");
+int gravacao=entrada.nextInt();
 
+
+	
 		do {
 			System.out.println("\nDigite a opção desejada.");
 			System.out.println("1  - Cadastrar novo motorista.\n" + "2  - Cadastrar novo veiculo.\n"
@@ -33,7 +40,7 @@ public class Principal {
 			switch (opcao) { // escolha de opções
 
 			case 1: // cadastrar motorista
-				MotoristaBO.getInstance().cadastraMotorista();
+				MotoristaBO.getInstance().cadastraMotorista(gravacao);
 				break;
 
 			case 2: // cadastrar veiculos
@@ -45,7 +52,7 @@ public class Principal {
 				break;
 
 			case 4: // listar motoristas
-				MotoristaBO.getInstance().listarMotoristas();
+				MotoristaBO.getInstance().listarMotoristas(gravacao);
 				break;
 
 			case 5: // listar veiculos

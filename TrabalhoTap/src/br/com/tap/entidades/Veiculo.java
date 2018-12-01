@@ -15,7 +15,6 @@ public class Veiculo extends Entidade implements Serializable {
 	private int ano;
 	private String placa;
 	private Motorista motorista;
-	private int carga;
 
 	public Veiculo(String marca, String modelo, int ano, String placa) {
 		this.marca = marca;
@@ -28,6 +27,10 @@ public class Veiculo extends Entidade implements Serializable {
 
 	}
 
+	@Override
+	public String toString() {
+		return "Veiculo [marca=" + marca + ", modelo=" + modelo + ", ano=" + ano + ", placa=" + placa + ", motorista="+ motorista + "]";
+	}
 
 	public Motorista getMotorista() {
 		return motorista;
@@ -73,12 +76,8 @@ public class Veiculo extends Entidade implements Serializable {
 		return serialVersionUID;
 	}
 
-	public void setCarga(int carga){
-		this.carga = carga;
-	}
-
 	public int getCarga() {
-		return carga;
+		return 0;
 	}
 
 }

@@ -6,6 +6,9 @@ import java.util.Scanner;
 
 import br.com.tap.dao.Deserializador;
 import br.com.tap.dao.Serializador;
+import br.com.tap.entidades.Caminhao;
+import br.com.tap.entidades.Carreta;
+import br.com.tap.entidades.Van;
 import br.com.tap.entidades.Veiculo;
 
 /**
@@ -39,13 +42,13 @@ public class VeiculoBO implements BussinessObject<Veiculo> {
 		while (true) {
 			opcaoVeiculo = entrada.nextInt();
 			if (opcaoVeiculo == 1) {
-				veiculo.setCarga(3);
+				veiculo = new Caminhao("", "", 0, "");
 				break;
 			} else if (opcaoVeiculo == 2) {
-				veiculo.setCarga(10);
+				veiculo = new Carreta("", "", 0, "");
 				break;
 			} else if (opcaoVeiculo == 3) {
-				veiculo.setCarga(1);
+				veiculo = new Van("", "", 0, "");
 				break;
 			} else {
 				System.out.println("Opção invalida!");
@@ -99,11 +102,7 @@ public class VeiculoBO implements BussinessObject<Veiculo> {
 
 				for (Veiculo x : veiculos) {
 					System.out.println("Marca: " + x.getMarca() + "\nModelo: " + x.getModelo() + "\nPlaca: "
-							+ x.getPlaca());
-					if(x.getMotorista() != null) {
-						System.out.println("Veiculo esta vinculado ao motorista "+ x.getMotorista().getNome()+" CNH: "+x.getMotorista().getNumero_Carteira());
-					}
-					System.out.println("------------------------");
+							+ x.getPlaca() + "\n------------------------");
 				}
 			}
 		} catch (Exception ex) {

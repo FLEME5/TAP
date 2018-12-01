@@ -1,13 +1,16 @@
 package br.com.tap.bo;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import br.com.tap.dao.Deserializador;
+import br.com.tap.dao.MotoristaDao;
 import br.com.tap.dao.Serializador;
 import br.com.tap.entidades.Endereco;
 import br.com.tap.entidades.Motorista;
+import br.com.tap.entidades.Van;
 import br.com.tap.entidades.Veiculo;
 
 /**
@@ -28,7 +31,7 @@ public class MotoristaBO implements BussinessObject<Motorista> {
 	}
 
 	// RF002
-	public void cadastraMotorista() {
+	public void cadastraMotorista(int gravacao) {
 
 		Scanner entrada = new Scanner(System.in);
 		String nomeArquivo = "conteudo/motoristas";
@@ -69,6 +72,13 @@ public class MotoristaBO implements BussinessObject<Motorista> {
 		motorista.setMes_Nascimento(mes_Nascimento);
 		motorista.setAno_Nascimento(ano_Nascimento);
 
+		
+		
+		if(gravacao==0){
+		MotoristaDao motoDao=new MotoristaDao();
+		motoDao.gravaMotorista(motorista);;
+			
+		}else{
 		try {
 			Serializador s = new Serializador();
 
@@ -84,12 +94,16 @@ public class MotoristaBO implements BussinessObject<Motorista> {
 		} catch (Exception ex) {
 			System.err.println("Falha ao serializar ou deserializar! - " + ex.toString());
 		}
-
+		}
+		
 	}
 
-	public void listarMotoristas() {
-
-		try {
+	public void listarMotoristas(int gravacao) {
+if(gravacao==0){
+		MotoristaDao motoDao = new MotoristaDao();
+motoDao.visualizaMotorista();
+} else{
+try {
 			List<Motorista> motoristas = Deserializador.deserializar("conteudo/motoristas", Motorista.class);
 			if (motoristas == null) {
 				motoristas = new ArrayList<>();
@@ -98,18 +112,14 @@ public class MotoristaBO implements BussinessObject<Motorista> {
 				System.out.println("Motoristas cadastrados:\n------------------------");
 				for (Motorista x : motoristas) {
 					System.out.println("Nome: " + x.getNome() + "\nCategoria: " + x.getCategoria_Habilitacao()
-							+ "\nNumero CNH: " + x.getNumero_Carteira());
-					if(x.getVeiculo() != null) {
-						System.out.println("Motorista esta vinculado ao " + x.getVeiculo().getModelo() + " Placa: "+x.getVeiculo().getPlaca());
-					}
-					System.out.println("------------------------");
+							+ "\nNumero CNH: " + x.getNumero_Carteira() + "\n------------------------");
 				}
 			}
 
 		} catch (Exception ex) {
 			System.err.println("Falha ao serializar ou deserializar! - " + ex.toString());
 		}
-
+}
 	}
 
 	// RF007 Vincular motorista com um veiculo
@@ -161,7 +171,7 @@ public class MotoristaBO implements BussinessObject<Motorista> {
 										motorista.setVeiculo(veiculo);
 										System.out.println("Motorista registrado com sucesso.");
 
-									} else if (veiculo.getCarga() == 1
+									} else if (veiculo instanceof Van
 											&& Character.toLowerCase(motorista.getCategoria_Habilitacao()) == 'b') {
 										veiculo.setMotorista(motorista);
 										motorista.setVeiculo(veiculo);

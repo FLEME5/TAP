@@ -138,11 +138,9 @@ public class EncomendaBO implements BussinessObject<Encomenda> {
 			List<Encomenda> encomendasPendentes = new ArrayList<>();
 			try {
 				encomendasPendentes = Deserializador.deserializar("conteudo/encomendasPendentes", Encomenda.class);
-				System.out.println("Encomendas cadastradas:\n------------------------");
+
 				for (Encomenda x : encomendasPendentes) {
-					System.out.println("Nome remetente: " + x.getNomeRemetente() + "\nNome destinatario: "
-							+ x.getNomeDestinatario() + "\nCodigo localizador: " + x.getCodigoLocalizador()
-							+ "\n------------------------");
+					System.out.println(x);
 				}
 
 			} catch (Exception ex) {
